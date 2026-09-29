@@ -33,7 +33,7 @@ function NavBar () {
               className='d-inline-block align-middle me-3'
               alt='BookStore Logo'
             />
-            G.K.P BookStore
+            ApnaStore
           </Navbar.Brand>
           <Nav className='me-auto'>
             <Nav.Link href='#home'>Home</Nav.Link>
