@@ -1,12 +1,15 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { addProduct } from './features/cart/cartSlice'
 const apiURL = import.meta.env.VITE_API_URL
 import axios from 'axios'
 import { Container, Row, Col, Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 function BookDetail(){
     let [book, setBook] = useState({})
     let params = useParams();
     let id = params.id;
+    let dispatch = useDispatch();
     useEffect(()=>{
         axios({
             url : apiURL + '/user/book/' + id,
@@ -17,13 +20,18 @@ function BookDetail(){
             console.log(err)
         })
     }, [])
+
+    function addToCart(){
+        dispatch(addProduct(book))
+    }
+    
     return(
        <Container>
         <Row className = 'mt-5'>
             <Col lg={4}>
             <img src={book.bookImage} height="300px" width="300px">
             </img>
-            <Button className="mt-2" style = {{ width : '300px' }} size = 'lg' variant="warning"> Add to Cart </Button>
+            <Button className="mt-2" style = {{ width : '300px' }} size = 'lg' variant="warning" onClick={ addToCart }> Add to Cart </Button>
             </Col>
             <Col>
                 <h5 style={{ color: 'grey'}}>{book.bookTitle}</h5>

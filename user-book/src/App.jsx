@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 import NavBar from './NavBar.jsx'
 import HomeCard from './HomeCard.jsx'
@@ -10,6 +10,7 @@ import BookDetail from './BookDetail.jsx'
 function App () {
   return (
     <>
+    <Provider store={store}>
     <BrowserRouter>
         <NavBar />
         <Routes>
@@ -18,6 +19,7 @@ function App () {
     </Routes>
       <Footer />
     </BrowserRouter>
+    </Provider>
 
     
     </>

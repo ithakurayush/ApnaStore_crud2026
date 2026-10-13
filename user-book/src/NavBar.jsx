@@ -4,12 +4,14 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Button } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import Login from './Login'
+import { useSelector } from 'react-redux'
 import logo from './assets/logo.png'
 
 function NavBar () {
   let [showLoginModal, setShowLoginModal] = useState(false)
   let [isLoggedIn, setIsLoggedIn] = useState(false)
   let [userName, setUserName] = useState('')
+  const products = useSelector((state)=> state.cart)
   useEffect(() => {
       let flag = localStorage.getItem('isLoggedIn')
       if(flag) {
@@ -42,6 +44,13 @@ function NavBar () {
           </Nav>
             <Nav.Link className='text-white' style={{ position : 'relative' }}>
             <i className='bi bi-cart' ></i>
+            {
+              products.length  >0 && 
+              <Badge bg = "danger" pill  style = {{position : 'absolute', top :'0px', right : '-8px'
+              }}
+
+              >
+            }
             </Nav.Link>
 
           {isLoggedIn && <span className='text-white'>Welcome {userName}</span>}

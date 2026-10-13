@@ -3,7 +3,9 @@ let cartSlice = createSlice({
     name : 'cart',
     initialState : { products : []},
     reducers : {
-        addProduct : {},
+        addProduct : (state, action ) => {
+            state.products.push(action.payload)
+        },
         deleteProduct : {},
     }
 })
