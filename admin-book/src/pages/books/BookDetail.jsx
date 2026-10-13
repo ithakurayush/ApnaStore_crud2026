@@ -12,7 +12,7 @@ function BookDetail () {
   const navigate = useNavigate()
 
   const [book, setBook] = useState({
-    bookTittle: '',
+    bookTitle: '',
     authorName: '',
     imprint: '',
     publicationYear: '',
@@ -72,7 +72,7 @@ function BookDetail () {
               {book.bookImage ? (
                 <img
                   src={book.bookImage}
-                  alt={book.bookTittle}
+                  alt={book.bookTitle}
                   className='img-fluid'
                   style={{
                     width: '100%',
@@ -98,7 +98,7 @@ function BookDetail () {
 
             {/* BOOK INFORMATION */}
             <Col md={8}>
-              <h2 className='fw-bold'>{book.bookTittle || '-'}</h2>
+              <h2 className='fw-bold'>{book.bookTitle || '-'}</h2>
 
               <p className='text-muted fs-5'>By {book.authorName || '-'}</p>
 

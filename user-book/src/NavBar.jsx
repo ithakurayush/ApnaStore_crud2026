@@ -40,6 +40,10 @@ function NavBar () {
             <Nav.Link href='#books'>Books</Nav.Link>
             <Nav.Link href='#contact us'>Contact Us</Nav.Link>
           </Nav>
+            <Nav.Link className='text-white' style={{ position : 'relative' }}>
+            <i className='bi bi-cart' ></i>
+            </Nav.Link>
+
           {isLoggedIn && <span className='text-white'>Welcome {userName}</span>}
           {isLoggedIn && <Button variant='danger' className='ms-1'>Logout</Button>}
           {!isLoggedIn && <Button variant='success' className='ms-1' onClick={goForLogin}>

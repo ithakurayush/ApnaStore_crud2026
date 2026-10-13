@@ -3,7 +3,7 @@ const Discount = require('../models/Discount')
 
 const getBooks = async (req, res) => {
   try {
-    let books = await Book.find({}, { _id: 1, bookTittle: 1 })
+    let books = await Book.find({}, { _id: 1, bookTitle: 1 })
     // console.log(books, 'books')
     res.status(200).send({ data: books })
   } catch (error) {

@@ -11,7 +11,7 @@ function BookPageForEdit () {
   const id = params.id
 
   const [book, setBook] = useState({
-    bookTittle: '',
+    bookTitle: '',
     authorName: '',
     imprint: '',
     publicationYear: '',
@@ -45,7 +45,7 @@ function BookPageForEdit () {
         const data = res.data.data
 
         setBook({
-          bookTittle: data?.bookTittle || '',
+          bookTitle: data?.bookTitle || '',
           authorName: data?.authorName || '',
           imprint: data?.imprint || '',
           publicationYear: data?.publicationYear || '',
@@ -124,8 +124,8 @@ function BookPageForEdit () {
 
                     <Form.Control
                       type='text'
-                      name='bookTittle'
-                      value={book.bookTittle}
+                      name='bookTitle'
+                      value={book.bookTitle}
                       onChange={manageUpdate}
                     />
                   </Form.Group>

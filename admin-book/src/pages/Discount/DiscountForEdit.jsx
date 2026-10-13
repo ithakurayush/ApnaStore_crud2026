@@ -103,7 +103,7 @@ function DiscountForEdit () {
 
                 {books.map(b => (
                   <option key={b._id} value={b._id}>
-                    {b.bookTittle}
+                    {b.bookTitle}
                   </option>
                 ))}
               </Form.Select>

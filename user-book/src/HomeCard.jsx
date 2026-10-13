@@ -46,8 +46,9 @@ function HomeCard () {
       <Row className='g-4'>
         {books.map((book, index) => (
           <Col key={index} xs={12} sm={6} md={4} lg={3}>
-            <Card onClick={() => goToDetailPage(book._id)}
-  className='h-100 border-0'
+            <Card className="bookCard" onClick={() => goToDetailPage(book._id)}
+  className='h-100 border-0
+  bookCard'
   style={{
     borderRadius: '12px',
     overflow: 'hidden',
@@ -68,7 +69,7 @@ function HomeCard () {
               >
                 <img
                   src={book.bookImage}
-                  alt={book.bookTittle}
+                  alt={book.bookTitle}
                   style={{
                     height: '100%',
                     width: '100%',
@@ -94,7 +95,7 @@ function HomeCard () {
                     minHeight: '42px'
                   }}
                 >
-                  {book.bookTittle}
+                  {book.bookTitle}
                 </Card.Title>
 
                 {/* Author */}

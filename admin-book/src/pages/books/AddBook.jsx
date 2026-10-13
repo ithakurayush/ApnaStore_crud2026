@@ -8,7 +8,7 @@ const apiUrl = import.meta.env.VITE_API_URL
 function AddBook () {
   const navigate = useNavigate()
   const [bookData, setBookData] = useState({
-    bookTittle: '',
+    bookTitle: '',
     authorName: '',
     imprint: '',
     publicationYear: '',
@@ -75,7 +75,7 @@ function AddBook () {
 
     const formData = new FormData()
 
-    formData.append('bookTittle', bookData.bookTittle)
+    formData.append('bookTitle', bookData.bookTitle)
     formData.append('authorName', bookData.authorName)
     formData.append('imprint', bookData.imprint)
     formData.append('publicationYear', bookData.publicationYear)
@@ -132,8 +132,8 @@ function AddBook () {
                 <Form.Label>Book Title</Form.Label>
                 <Form.Control
                   type='text'
-                  name='bookTittle'
-                  value={bookData.bookTittle}
+                  name='bookTitle'
+                  value={bookData.bookTitle}
                   onChange={handleChange}
                   required
                 />

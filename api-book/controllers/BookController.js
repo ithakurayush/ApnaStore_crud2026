@@ -24,7 +24,7 @@ const getBooks = async (req, res) => {
     let totalBooks = await Book.countDocuments({})
     // console.log('Total Books = ',totalBooks);
     let books = await Book.find({
-      bookTittle: new RegExp(req.query.searchBook || '', 'i')
+      bookTitle: new RegExp(req.query.searchBook || '', 'i')
     })
       .skip((req.query.pageNo - 1) * req.query.booksPerPage)
       .limit(req.query.booksPerPage)

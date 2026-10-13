@@ -62,7 +62,7 @@ function DiscountList() {
                                     <td>{d.discountName}</td>
                                     <td>{d.discountType}</td>
                                     <td>{d.discountValue}</td>
-                                    <td>{d.book?.bookTittle || 'N/A'}</td>
+                                    <td>{d.book?.bookTitle || 'N/A'}</td>
                                     <td>
                                         {new Date(d.validFrom).toLocaleDateString("en-IN", {
                                             timeZone: "Asia/Kolkata"

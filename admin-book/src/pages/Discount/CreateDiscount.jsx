@@ -64,7 +64,7 @@ function CreateDiscount() {
                      <option>---SelectBook---</option>
                      {
                         books.map((book) =>
-                           <option value={book._id}>{book.bookTittle}</option>
+                           <option value={book._id}>{book.bookTitle}</option>
                         )
                      }
                   </Form.Select>

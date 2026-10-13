@@ -26,7 +26,7 @@ function BookDetail(){
             <Button className="mt-2" style = {{ width : '300px' }} size = 'lg' variant="warning"> Add to Cart </Button>
             </Col>
             <Col>
-                <h5 style={{ color: 'grey'}}>{book.bookTittle}</h5>
+                <h5 style={{ color: 'grey'}}>{book.bookTitle}</h5>
                 <h6 style={{ color: 'grey'}}>AuthorName: {book.authorName}, <br /> (ISBN No: {book.isbnNo})</h6>
                 <h4>Product Highlights</h4>
                 <h5>Price:<span className='ms-1' style={{ color:'grey' }}>&#x20b9;{book.originalPrice}</span></h5>

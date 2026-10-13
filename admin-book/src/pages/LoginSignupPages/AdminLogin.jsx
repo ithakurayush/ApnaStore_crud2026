@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Container, Row, Col, Card, Form, Button, Spinner } from "react-bootstrap";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL
+
 // import { useNavigate } from "react-router-dom";
+
 
 function AdminLogin() {
   // let navigate=useNavigate()
@@ -31,8 +34,8 @@ function AdminLogin() {
 
     try {
       setShowSpinner(true);
-      const res = await axios.post(
-        "http://localhost:3000/admin/login", {
+      let backendurl = apiUrl + '/admin/login'
+      const res = await axios.post(backendurl, {
         email,
         password,
       });
