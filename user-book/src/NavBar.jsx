@@ -38,7 +38,7 @@ const {products} = useSelector((state) => state.cart)
               className="d-inline-block align-middle me-3"
               alt="BookStore Logo"
             />
-            REDC BookStore
+            APNA BookStore
           </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>

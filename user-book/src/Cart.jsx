@@ -43,8 +43,8 @@ function Cart() {
                   <td>
                     <img
                       src={product.bookImage}
-                      heigth="30px"
-                      width="30px"
+                      heigth="300px"
+                      width="300px"
                     ></img>
                   </td>
                   <td>{product.bookTitle}</td>
