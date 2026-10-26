@@ -1,0 +1,28 @@
+
+import { useState, useEffect } from "react";
+import axios from 'axios'
+const apiUrl = import.meta.env.VITE_API_URL
+
+function MyOrder(){
+    let [myorders, setMyOrders ] = useState([])
+    useEffect(()=>{
+        let isLoggedIn = localStorage.getItem('isLoggedIn')
+        if(isLoggedIn){
+            let email = localStorage.getItem('email')
+            axios({
+                url : apiUrl + '/my/orders',
+                method : 'get'
+            }).then((res)=>{
+                setMyOrders(res.data.data)
+            }).catch((err)=>{
+                
+            })
+        }else {
+            alert('please login to view yours orders....')
+        }
+    },[])
+    return(
+        <h1>My Order</h1>
+    )
+}
+export default MyOrder

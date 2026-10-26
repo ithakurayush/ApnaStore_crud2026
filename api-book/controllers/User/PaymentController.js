@@ -1,52 +1,119 @@
-const Razorpay = require("razorpay")
-const Transaction = require('../../models/Transaction')
-async function makePayment(req,res){
-    try{
+
+const Razorpay = require("razorpay");
+const crypto = require("crypto");
+const Transaction = require("../../models/Transaction");
+
+async function makePayment(req, res) {
+    try {
         const razorpay = new Razorpay({
-            key_id : rzp_test_TqS9tuWwg1iGSX,
-            secret_key : foY0nCDVFPQj016dC2r34A5r
-        })
-        console.log(req.body)
-        let transaction = new Transaction(req.body)
+            key_id: "rzp_test_TsQcL07XjaFhdQ",
+            key_secret: "9guQ86IssTLQ7yv3rlIPnab2"
+        });
+
+        console.log(req.body);
+
+        const amount = Number(req.body.amount);
+
+        if (!Number.isFinite(amount) || amount <= 0) {
+            return res.status(400).json({
+                message: "Invalid payment amount"
+            });
+        }
+
+        const transaction = new Transaction(req.body);
+
         const options = {
-            amount : req.body.amount*100,
-            currency : 'INR',
-            receipt : req.body.firstName
-        } 
-        const order = await razorpay.orders.create(options)
-        console.log(order)
-        transaction.transactionId = order.id
+            amount: Math.round(amount * 100),
+            currency: "INR",
+            receipt: `receipt_${Date.now()}`
+        };
+
+        const order = await razorpay.orders.create(options);
+
+        transaction.transactionId = order.id;
+
         await transaction.save();
-        res.status(200).json(order)
-    }
-    catch(err){
-        console.log(err)
-        res.status(500).send(err)
+
+        console.log(order);
+
+        return res.status(200).json(order);
+
+    } catch (err) {
+        console.log(err);
+
+        return res.status(500).json({
+            message: "Unable to create payment order"
+        });
     }
 }
 
-async function verifyPayment(req,res){
-    try{
-        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+async function verifyPayment(req, res) {
+    try {
+        const {
+            razorpay_order_id,
+            razorpay_payment_id,
+            razorpay_signature
+        } = req.body;
+
         const sign = razorpay_order_id + "|" + razorpay_payment_id;
+
         const expectedSign = crypto
-            .createHmac("sha256", 'foY0nCDVFPQj016dC2r34A5r')
-            .update(sign.toString())
+            .createHmac("sha256", "9guQ86IssTLQ7yv3rlIPnab2")
+            .update(sign)
             .digest("hex");
-        console.log(expectedSign, 'expectedSign')
-        if (razorpay_signature === expectedSign) {
-            // पेमेंट सफल हुआ! यहाँ आप डेटाबेस में स्टूडेंट की फीस "Paid" मार्क कर सकते हैं।
-            return res.status(200).json({ message: "Payment verified successfully" });
-        } else {
-            return res.status(400).json({ message: "Invalid signature, payment failed!" });
+
+        if (razorpay_signature !== expectedSign) {
+            return res.status(400).json({
+                message: "Invalid signature, payment failed!"
+            });
         }
-    }catch{
-        console.log(err)
-        res.status(500).send(err)
+
+        const transaction = await Transaction.findOne({
+            transactionId: razorpay_order_id
+        });
+
+        if (!transaction) {
+            return res.status(404).json({
+                message: "Transaction not found"
+            });
+        }
+
+        const razorpay = new Razorpay({
+            key_id: "rzp_test_TsQcL07XjaFhdQ",
+            key_secret: "9guQ86IssTLQ7yv3rlIPnab2"
+        });
+
+        const payment = await razorpay.payments.fetch(
+            razorpay_payment_id
+        );
+
+        if (
+            payment.order_id !== razorpay_order_id ||
+            payment.status !== "captured"
+        ) {
+            return res.status(400).json({
+                message: "Payment is not captured"
+            });
+        }
+
+        transaction.status = "Completed";
+
+        await transaction.save();
+
+        return res.status(200).json({
+            message: "Payment verified successfully"
+        });
+
+    } catch (err) {
+        console.log(err);
+
+        return res.status(500).json({
+            message: "Payment verification failed"
+        });
     }
 }
 
 module.exports = {
     makePayment,
     verifyPayment
-}
+};

@@ -6,7 +6,7 @@ router.post('/create-order',(req, res)=>{
 })
 
 router.post('/verify-payment', (req,res)=>{
-    PaymentController.verifyPayment(req.body)
+    PaymentController.verifyPayment(req,res)
 })
 
 module.exports = router

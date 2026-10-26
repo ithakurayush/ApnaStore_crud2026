@@ -70,6 +70,15 @@ function Sidebar() {
               <span className="d-none d-md-inline">Manage Availability</span>
             </ListGroup.Item>
 
+            <ListGroup.Item
+              as={NavLink}
+              to="/transactions"
+              className="d-flex align-items-center gap-2">
+              <i className='bi bi-arrow-left-right'></i>
+              <span className="d-none d-md-inline">Manage Transaction</span>
+            </ListGroup.Item>
+
+
 
           </ListGroup>
         </div>

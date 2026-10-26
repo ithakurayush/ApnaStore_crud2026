@@ -4,6 +4,7 @@ const connect = require('./connection')
 const book = require('./routes/BookRoutes')
 const createAdmin = require('./createAdmin');
 const User = require('./routes/UserRoutes');
+const transaction = require('./routes/Payment')
 const home = require('./routes/User/home')
 const payment = require('./routes/User/payment')
 const discount = require('./routes/DiscountRoutes')
@@ -16,6 +17,7 @@ app.use(home);
 app.use(frontUser);
 app.use(User);
 app.use(payment);
+app.use(transaction)
 
 
 connect();

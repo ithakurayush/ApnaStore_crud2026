@@ -42,8 +42,10 @@ const {products} = useSelector((state) => state.cart)
           </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#books">Books</Nav.Link>
-            <Nav.Link href="#contact us">Contact Us</Nav.Link>
+            <Nav.Link href="#feature">Books</Nav.Link>
+            <Nav.Link href="#pricing">Contact Us</Nav.Link>
+            <Nav.Link href="/myorders" style = {{ color : 'white'}}>My Orders</Nav.Link>
+
             <Nav.Link
               className="text-white"
               onClick={() => navigate("/cart")}
