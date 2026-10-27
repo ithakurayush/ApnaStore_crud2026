@@ -31,7 +31,7 @@ function Sidebar() {
 
         <div className="p-3 border-bottom d-flex align-items-center">
           <Image src={logo} width={40} height={40} className="me-2" />
-          <span className="fw-bold d-none d-md-inline fs-2">RDEC</span>
+          <span className="fw-bold d-none d-md-inline fs-2">APNA</span>
         </div>
 
 

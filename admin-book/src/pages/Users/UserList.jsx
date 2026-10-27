@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Container, Row, Col, Table} from "react-bootstrap";
+import { Container, Row, Col, Table, Button} from "react-bootstrap";
 const apiUrl = import.meta.env.VITE_API_URL
 
 function UseList() {
@@ -15,6 +15,21 @@ function UseList() {
             alert(err)
         })
     })
+
+      function handleDelete (id) {
+    axios({
+      url: apiUrl + '/delete/book/' + id,
+      method: 'delete'
+    })
+      .then(() => {
+        alert('data has been deleted successfully')
+        setIsDelete(true)
+      })
+      .catch(err => {
+        alert(err)
+      })
+  }
+
     return(
         <Container>
             <Row>
@@ -40,7 +55,7 @@ function UseList() {
                                     <td>{user.status}</td>
                                 </tr>
                                 )
-                            }    
+                            }
                         </tbody>            
                     </Table>
                 </Col>
