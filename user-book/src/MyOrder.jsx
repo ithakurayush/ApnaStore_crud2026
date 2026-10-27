@@ -5,17 +5,22 @@ const apiUrl = import.meta.env.VITE_API_URL
 
 function MyOrder(){
     let [myorders, setMyOrders ] = useState([])
+
     useEffect(()=>{
         let isLoggedIn = localStorage.getItem('isLoggedIn')
         if(isLoggedIn){
             let email = localStorage.getItem('email')
+            let data = {
+                email : email
+            }
             axios({
                 url : apiUrl + '/my/orders',
-                method : 'get'
+                method : 'post',
+                data : data 
             }).then((res)=>{
                 setMyOrders(res.data.data)
             }).catch((err)=>{
-                
+                alert(err)
             })
         }else {
             alert('please login to view yours orders....')

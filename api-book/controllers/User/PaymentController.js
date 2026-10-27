@@ -100,9 +100,7 @@ async function verifyPayment(req, res) {
 
         await transaction.save();
 
-        return res.status(200).json({
-            message: "Payment verified successfully"
-        });
+        return res.status(200).json({ message: "Payment verified successfully", data : razorpay_order_id});
 
     } catch (err) {
         console.log(err);
@@ -113,7 +111,21 @@ async function verifyPayment(req, res) {
     }
 }
 
+async function getMyOrders(req, res){
+    try{
+        let { email } = req.body;
+        console.log(email, 'email')
+        let myorders = await Transaction.find({ email : email })
+        console.log(myorders, 'myorders')
+        res.status(200).send({ data : myorders })
+    }catch(err){
+        console.log(err)
+        res.status(500).send({ message : 'Something went wrong'})
+    }
+}
+
 module.exports = {
     makePayment,
-    verifyPayment
+    verifyPayment,
+    getMyOrders
 };

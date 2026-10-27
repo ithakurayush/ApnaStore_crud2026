@@ -7,6 +7,7 @@ import axios from 'axios'
 import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
+
 function BookDetail () {
   const navigate = useNavigate()
   let [book, setBook] = useState({})
@@ -29,6 +30,11 @@ function BookDetail () {
 
   function addToCart () {
     dispatch(addProduct(book))
+  }
+
+  function buyNow(){
+    dispatch(addProduct(book))
+    navigate('/checkOut')
   }
 
   return (
@@ -149,7 +155,7 @@ function BookDetail () {
         </div>
 
         {/* Buy Now */}
-        <Button style={{ width: '180px' }} size='lg' variant='primary'>
+        <Button style={{ width: '180px' }} size='lg' variant='primary' onClick={buyNow}>
           Buy Now
         </Button>
       </div>

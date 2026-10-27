@@ -15,11 +15,13 @@ let cartSlice = createSlice({
     deleteProduct: (state, action) => {
     let product = state.products.find((product) => product._id === action.payload)
     state.totalCost = state.totalCost - parseInt(product.originalPrice)
-    state.products = state.products.filter(
-        (product) => product._id !== action.payload,
-      );
+    state.products = state.products.filter((product) => product._id !== action.payload,);
     },
+    deleteCart: (state, action) => {
+      state.products.length = 0
+      state.totalCost = 0
+    }
   },
 });
-export const { addProduct, deleteProduct,totalCost } = cartSlice.actions;
+export const { addProduct, deleteProduct,totalCost,deleteCart } = cartSlice.actions;
 export default cartSlice.reducer;

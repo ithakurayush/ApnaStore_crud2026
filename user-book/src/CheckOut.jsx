@@ -1,12 +1,15 @@
 
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { deleteCart } from "./features/cart/cartSlice"
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function CheckOut() {
     const { products, totalCost } = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+    let navigate = useNavigate()
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -18,6 +21,11 @@ function CheckOut() {
     const [state, setState] = useState("");
     const [country, setCountry] = useState("");
     const [pinCode, setPinCode] = useState("");
+    const [amount, setAmount] = useState(0);
+
+    function deleteCartOnPaymentSuccess(){
+        dispatch(deleteCart())
+    }
 
     const loadScript = (src) => {
         return new Promise((resolve) => {
@@ -121,11 +129,11 @@ function CheckOut() {
 
                         if (verifyResponse.ok) {
                             alert("Payment has been completed successfully");
+                            { deleteCartOnPaymentSuccess() }
+                            navigate('/payment/success', {state : verifyData.data})
                         } else {
-                            alert(
-                                verifyData.message ||
-                                "Payment verification failed"
-                            );
+                            alert(verifyData.message || "Payment verification failed");
+                            navigate('/payment/fail')
                         }
                     } catch (error) {
                         console.error(error);
