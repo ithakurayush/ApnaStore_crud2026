@@ -66,8 +66,8 @@ function NavBar () {
           >
             <img
               src={logo}
-              width='45'
-              height='45'
+              width='100'
+              height='35'
               className='rounded-circle me-2'
               alt='BookStore Logo'
               style={{
@@ -75,7 +75,7 @@ function NavBar () {
               }}
             />
 
-            <span className='fs-5'>APNA BookStore</span>
+            <span className='fs-5' >APNA BookStore</span>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls='navbar-content' />
