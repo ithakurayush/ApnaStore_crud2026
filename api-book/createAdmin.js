@@ -9,7 +9,7 @@ const createAdmin =  async () => {
             user = new User();
             user.firstName = 'Ayush';
             user.lastName = 'Thakur';
-            user.mobileNo = '8171818132'
+            user.mobileNo = '6393247211'
             user.email = "ayush@yopmail.com";
             let password = bcrypt.hashSync('123456', 10);
             user.password = password;
