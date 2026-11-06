@@ -27,11 +27,11 @@ function Sidebar() {
   }
   return (
     <>
-      <div className="d-flex flex-column justify-content-between border-end sticky-top" style={{ width: '18%', height: '100vh', borderRight: '1px solid #dee2e6', boxShadow: '2px 0 8px rgba(0, 0, 0, 0.1)' }}>
+      <div  className="d-flex flex-column justify-content-between border-end sticky-top " style={{ backgroundColor: '#172b4d', width: '18%', height: '100vh', borderRight: '1px solid #dee2e6', boxShadow: '2px 0 8px rgba(0, 0, 0, 0.1)' }}>
 
         <div className="p-3 border-bottom d-flex align-items-center">
           <Image src={logo} width={40} height={40} className="me-2" />
-          <span className="fw-bold d-none d-md-inline fs-2">APNA</span>
+          <span className="fw-bold d-none d-md-inline fs-2">APNA BookStore</span>
         </div>
 
 

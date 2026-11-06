@@ -95,11 +95,13 @@ function BookDetail () {
 
               <hr />
 
-              <div className='mb-4'>
-                <h4 className='fw-bold text-success'>
-                  ₹{book.originalPrice || '-'}
-                </h4>
-              </div>
+              <h5 className='mb-3 fw-bold'>Price :
+                <span className='ms-1 fw-bold text-success' style={{ color : 'grey' }}>&#x20b9; {book.originalPrice} </span>
+                {Object.hasOwn(book, 'discountValue') && <span className='fw-bold text-success' >{book.discountvalue} </span>}
+                  {/* ₹{book.originalPrice || '-'} */}
+                  <span className='ms-1 fw-bold text-success'>{book.discountValue}% off</span>
+
+                </h5>
 
               {book.shortDescription && (
                 <div className='mb-4'>

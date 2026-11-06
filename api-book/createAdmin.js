@@ -1,5 +1,7 @@
 const User = require('./models/User');
 const bcrypt = require('bcrypt');
+
+
 const createAdmin =  async () => {
     try {
         let user = await User.findOne({ email: 'ayush@yopmail.com' });
@@ -21,5 +23,4 @@ const createAdmin =  async () => {
         console.log(err);
     }
 }
-
 module.exports = createAdmin;

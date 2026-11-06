@@ -19,7 +19,7 @@ function AdminNavbar() {
             height="50"
             className="d-inline-block"
           />{" "}
-          RDEC
+          APNA BookStore
         </Navbar.Brand>
 
         <Navbar.Toggle />
