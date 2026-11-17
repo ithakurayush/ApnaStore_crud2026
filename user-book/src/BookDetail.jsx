@@ -189,6 +189,9 @@ function BookDetail () {
             value={book.nameOfManufacturer}
           />
 
+{/* added comment for git hub account */}
+
+
           <BookDetailLocal
             label='Manufacturer Address'
             value={book.addressOfManufacturer}
